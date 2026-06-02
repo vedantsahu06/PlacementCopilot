@@ -1,0 +1,61 @@
+# Dependencies
+
+backend/node_modules/
+ai-agent/node_modules/
+
+# Environment Variables
+
+backend/.env
+ai-agent/.env
+
+# Uploads
+
+backend/uploads/
+
+# Logs
+
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS Files
+
+.DS_Store
+Thumbs.db
+
+# IDE
+
+.vscode/
+.idea/
+
+# Build Files
+
+dist/
+build/
+
+# Coverage
+
+coverage/
+
+# Temporary Files
+
+tmp/
+temp/
+
+# Python
+
+**pycache**/
+*.pyc
+.venv/
+venv/
+
+# ChromaDB / Vector DB
+
+chroma/
+chromadb/
+
+# Misc
+
+.env
+.env.local
