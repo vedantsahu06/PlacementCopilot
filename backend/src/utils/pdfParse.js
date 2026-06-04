@@ -12,7 +12,7 @@ async function parseLocalFile(filePath) {
     // 3. Extract the text (or use getInfo(), getTable(), etc.)
     const result = await parser.getText();
     
-    console.log(result.text);
+    // console.log(result.text);
     
     // 4. Always destroy the parser instance to free up memory
     await parser.destroy();
