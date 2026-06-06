@@ -150,6 +150,8 @@ IMPORTANT:
     const cleanedResponse = jsonrepair(response.text);
 
     const parsedResponse = resumeAnalyserSchema.parse(JSON.parse(cleanedResponse));
+    parsedResponse.role = role;
+    
 
     return parsedResponse;
 

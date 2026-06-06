@@ -1,9 +1,20 @@
 import pdfParse from "../../utils/pdfParse.js";
 import resumeParserPrompt from "../../ai/prompts/resumeParser.prompt.js";
 import Resume from "./resume.models.js";
-import {Analyser,JDMatch} from "./resume.models.js";
+import {Analyser,JDMatch, RawJD} from "./resume.models.js";
 import analyseResume from "../../ai/prompts/resumeAnalyser.prompt.js";
 import analyseResumeJD from "../../ai/prompts/resumeJDAnalyser.prompt.js";
+
+
+function normalizeSkills(skills) {
+    for (let i = 0; i < skills.length; i++) {
+        skills[i] = skills[i].toLowerCase().trim().replace(/[^a-z0-9]/g, '');;
+
+    }
+    return skills;
+
+}
+
 async function uploadResume(file) {
 
     const text =
@@ -41,10 +52,10 @@ async function analyseResumeFunc(id,role){
     }
 
     const resumeData = resume.resumeData;
-    const analysis = await analyseResume(role,resumeData);
+    const analysis = await analyseResume(role.trim().toLowerCase(),resumeData);
     const analyser = new Analyser({
         resumeId: id,
-        role,
+        role: role.trim().toLowerCase(),
         analysisResult: analysis
     });
     await analyser.save();
@@ -63,14 +74,27 @@ async function getAnalysisByResumeId(id){
 
 async function matchJobFunc(id,JD,company){
     const resumeData = await getAnalysisByResumeId(id);
-    const analysis = await analyseResumeJD(resumeData.role,resumeData,JD,company);
+    const role = resumeData.role.trim().toLowerCase();
+    const analysis = await analyseResumeJD(role,resumeData,JD,company);
     const jdMatch = new JDMatch({
         resumeId: id,
         company,
-        role: resumeData.role,
+        role: role,
         matchResult: analysis
     });
     await jdMatch.save();
+
+    const normalized = normalizeSkills(analysis.requiredSkills);
+
+
+    const rawJD = new RawJD({
+        company,
+        role: role,
+        rawJD: JD,
+        extracetedSkills: analysis.requiredSkills,
+        normalizedSkills: normalized
+    })
+    await rawJD.save();
     return analysis;
 
 

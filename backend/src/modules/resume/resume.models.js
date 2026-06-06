@@ -62,8 +62,43 @@ const JDMatchSchema = new mongoose.Schema({
 },{
     timestamps: true
 })
+
+
+const rawJDSchema = new mongoose.Schema({
+    company:{
+        type: String,
+        required: true
+    },
+    role:{
+        type: String,
+        required: true
+    },
+    rawJD:{
+        type: String,
+        required: true
+    },
+    extracetedSkills:{
+    type: [String],
+    required: true
+    },
+    normalizedSkills:{
+    type: [String],
+    required: true
+    }
+    // responsibilities:{
+    //     type: [String],
+        
+    // },
+    // qualifications:{
+    //     type: [String],
+    //     required: true
+    // }
+
+})
+
 export const Analyser = mongoose.model("Analyser", analyserSchema);
 export const JDMatch = mongoose.model("JDMatch", JDMatchSchema);
+export const RawJD = mongoose.model("RawJD", rawJDSchema);
 
 export default Resume;
  

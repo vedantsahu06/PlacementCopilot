@@ -105,6 +105,7 @@ ${company}
     const cleanedResponse = jsonrepair(response.text);
     // console.log("Cleaned response===============================:", cleanedResponse);
     const parsedResponse = resumeJDAnalyserSchema.parse(JSON.parse(cleanedResponse));
+    parsedResponse.role = role;
     // console.log("Parsed response:===================================", parsedResponse);
     return parsedResponse;
 }
