@@ -1,6 +1,8 @@
 # AI Placement Copilot
 
+
 An AI-powered Career Intelligence Platform designed to bridge the gap between a candidate's current skill set and the requirements of real-world software engineering roles.
+just a project made to learn Agentic AI, can be a future Product :)
 
 Unlike traditional resume analyzers that simply compare keywords and generate a score, AI Placement Copilot aims to answer a much deeper question:
 
