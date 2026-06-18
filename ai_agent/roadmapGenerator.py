@@ -5,7 +5,7 @@ from langchain_core.prompts import ChatPromptTemplate
 from pydantic import BaseModel, Field
 
 def RoadmapGenerator(user_input:str , role:str):
-    os.environ["GOOGLE_API_KEY"] = ""
+    os.environ["GOOGLE_API_KEY"] 
 
     class roadmap(BaseModel):
         skill: str
